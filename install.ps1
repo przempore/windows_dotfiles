@@ -13,6 +13,7 @@ $dotfiles = @{
     "wezterm\wezterm.lua" = "$env:USERPROFILE\.config\wezterm\wezterm.lua"
     "powershell\Microsoft.PowerShell_profile.ps1" = "$env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
     "glazewm" = "$env:USERPROFILE\.glzr"
+    "zed" = "$env:APPDATA\Zed"
 }
 
 function Write-Info {

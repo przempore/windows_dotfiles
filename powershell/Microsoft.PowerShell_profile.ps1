@@ -6,8 +6,10 @@ Set-Alias vi nvim
 function sb { Set-Location C:\Users\PP\Projects\second-brain\; vi . }
 
 function dev {
-    # Qt environment setup
-    $env:PATH = "C:\Qt\6.7.2\msvc2019_64\bin;$env:PATH"
+    $qslogPath = "C:\Users\PP\work\libraries\QsLog-3b32a0848e4f2fa60d080183367369ead254632c"
+    $qledPath = "C:\Users\PP\work\libraries\qledplugin-Desktop_Qt_5_15_2_MSVC2019_64bit-c898fe6"
+    $gdalPath = "C:\Users\PP\work\libraries\release-1928-x64-gdal-3-9-1-mapserver-8-2-0-libs"
+    $env:PATH = "$gdalPath;$qslogPath;$qledPath;C:\Qt\6.7.2\msvc2019_64\bin;$env:PATH"
 
     # Visual Studio DevShell setup
     Import-Module "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
@@ -17,7 +19,6 @@ function dev {
 }
 
 function qgisdev {
-    # QGIS Python environment setup
     $qgisPath = "C:\Program Files\QGIS 3.34.4"
 
     # Set PYTHONPATH to include QGIS Python modules

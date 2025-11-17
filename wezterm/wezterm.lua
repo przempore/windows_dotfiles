@@ -48,6 +48,11 @@ config.keys = {
     action = act.ActivateCopyMode,
   },
   {
+    key = '[',
+    mods = 'LEADER',
+    action = act.ActivateCopyMode,
+  },
+  {
     key = 'w',
     mods = 'LEADER',
     action = act.ShowTabNavigator,

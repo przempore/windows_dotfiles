@@ -29,7 +29,14 @@ config.leader = { key="a", mods="CTRL", timeout_milliseconds=1000 }
 
 local act = wezterm.action
 wezterm.on('update-right-status', function(window, pane)
-  window:set_right_status(window:active_workspace())
+  local overrides = window:get_config_overrides() or {}
+  local status = window:active_workspace()
+  
+  if overrides.leader and overrides.leader.key ~= "a" then
+    status = status .. " | Leader: ctrl+" .. overrides.leader.key
+  end
+  
+  window:set_right_status(status)
 end)
 config.keys = {
   {
@@ -128,6 +135,19 @@ config.keys = {
   {key = "L", mods = "LEADER", action = act{EmitEvent = "load_session"}},
   {key = "R", mods = "LEADER", action = act{EmitEvent = "restore_session"}},
   {key = "x", mods = "LEADER", action = act.CloseCurrentTab { confirm = true }},
+  {
+    key = 'A',
+    mods = 'LEADER|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local overrides = window:get_config_overrides() or {}
+      if not overrides.leader or overrides.leader.key == "a" then
+        overrides.leader = { key = ";", mods = "CTRL", timeout_milliseconds = 1000 }
+      else
+        overrides.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+      end
+      window:set_config_overrides(overrides)
+    end),
+  },
 }
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
